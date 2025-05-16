@@ -31,7 +31,7 @@ This project is built from scratch without external libraries (like Boost or Pro
 ## 📁 Project Structure
 
 ```
-├── 14_server.cpp       # Main server handling TCP connections and command dispatch
+├── server.cpp       # Main server handling TCP connections and command dispatch
 ├── avl.cpp / avl.h     # AVL Tree for sorted sets (ZSET)
 ├── hashtable.cpp / h   # Custom implementation of hash map
 ├── heap.cpp / h        # Min-heap used for priority queues or timeouts
