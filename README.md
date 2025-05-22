@@ -52,7 +52,7 @@ This project is built from scratch without external libraries (like Boost or Pro
 
 You can compile using g++:
 ```bash
-g++ -std=c++17 -pthread 14_server.cpp -o redis_server
+g++ -std=c++17 -pthread server.cpp -o redis_server
 ```
 
 Or use a `Makefile` if provided.
