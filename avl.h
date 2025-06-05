@@ -1,28 +1,36 @@
 #pragma once
 
-#include <stddef.h>
-#include <stdint.h>
-
+#include <cstddef>
+#include <cstdint>
 
 struct AVLNode {
-    AVLNode *parent = NULL;
-    AVLNode *left = NULL;
-    AVLNode *right = NULL;
-    uint32_t height = 0;    // subtree height
-    uint32_t cnt = 0;       // subtree size
+    AVLNode* parent = nullptr;
+    AVLNode* left = nullptr;
+    AVLNode* right = nullptr;
+    uint32_t height = 1;  // Height of the subtree rooted at this node
+    uint32_t count = 1;   // Total number of nodes in the subtree (including self)
 };
 
-inline void avl_init(AVLNode *node) {
-    node->left = node->right = node->parent = NULL;
+// Initializes a given node as a standalone AVL tree node
+inline void avl_init(AVLNode* node) {
+    node->parent = nullptr;
+    node->left = nullptr;
+    node->right = nullptr;
     node->height = 1;
-    node->cnt = 1;
+    node->count = 1;
 }
 
-// helpers
-inline uint32_t avl_height(AVLNode *node) { return node ? node->height : 0; }
-inline uint32_t avl_cnt(AVLNode *node) { return node ? node->cnt : 0; }
+// Helper to get height of a node (0 for null)
+inline uint32_t avl_height(const AVLNode* node) {
+    return node ? node->height : 0;
+}
 
-// API
-AVLNode *avl_fix(AVLNode *node);
-AVLNode *avl_del(AVLNode *node);
-AVLNode *avl_offset(AVLNode *node, int64_t offset);
+// Helper to get size of subtree rooted at node (0 for null)
+inline uint32_t avl_count(const AVLNode* node) {
+    return node ? node->count : 0;
+}
+
+// API Declarations
+AVLNode* avl_fix(AVLNode* node);                  // Recalculates and rebalances
+AVLNode* avl_del(AVLNode* node);                  // Deletes node and returns new root
+AVLNode* avl_offset(AVLNode* node, int64_t k);    // Returns k-th node in in-order traversal
